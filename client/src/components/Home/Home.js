@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect (() => {
         dispatch(getPosts());
-    }, [currentId, dispatch]);
+    }, [dispatch]);
     
     return (
         <Grow in>
@@ -28,6 +28,6 @@ const Home = () => {
             </Container>
         </Grow>
     );
-}
+};
 
 export default Home;

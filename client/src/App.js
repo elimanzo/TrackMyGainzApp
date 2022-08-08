@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import Navbar from './components/Navbar/Navbar';
@@ -12,10 +12,10 @@ const App = () => (
         <BrowserRouter>
             <Container maxWidth="lg">
                 <Navbar />
-                <Switch>
+                <Route>
                     <Route path="/" exact component ={Home} />
                     <Route path="/auth" exact component ={Auth} />
-                </Switch>
+                </Route>
             </Container>
         </BrowserRouter>
     </GoogleOAuthProvider>
