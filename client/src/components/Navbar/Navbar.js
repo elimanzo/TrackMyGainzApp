@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
 import useStyles from './styles';
-import gainz from '../../images/gainz.png';
+import gainzLogo from '../../images/gainzLogo.png';
+import gainzText from '../../images/gainzText.png';
 import * as actionType from '../../constants/actionTypes'
 
 const Navbar = () => {
@@ -17,8 +18,8 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
-        history.push('/auth');
         setUser(null);
+        history.push('/auth');
     };
 
     useEffect(() => {
@@ -35,16 +36,16 @@ const Navbar = () => {
 
     return (
         <AppBar className = {classes.appBar} position="static" color="inherit">
-            <div className = {classes.brandContainer}>
-                <Typography component={Link} to ="/" className={classes.heading} variant="h2" align="center">Track My Gainz</Typography>
-                <img className={classes.image} src={gainz} alt="icon" height="60" />
-            </div>
+            <Link to="/" className = {classes.brandContainer}>
+                <img component={Link} src={gainzText} alt="icon" height="60px"/>
+                <img className={classes.image} src={gainzLogo} alt="icon" height="50px" />
+            </Link>
             <Toolbar className={classes.toolbar}>
-                {user ? (
+                {user?.result ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.picture}>{user?.result.name.charAt(0)}</Avatar>
                         <Typography className = {classes.userName} variant = "h6">{user?.result.name}</Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Log Out</Button>
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
                     <Button component = {Link} to="/auth" variant="contained" color="primary">Sign in</Button>
