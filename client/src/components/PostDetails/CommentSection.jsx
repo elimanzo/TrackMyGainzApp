@@ -1,14 +1,59 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextFile, Button } from '@material-ui/core';
+import { Typography, TextFile, Button, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-import useStyles from './styles/';
+import useStyles from './styles';
+import { commentPost }from '../../actions/posts'
 
-const CommentSection = () => {
-    console.log('Comment Section');
+const CommentSection = ({ post }) => {
+    const classes = useStyles();
+    const [comments, setComments] = useState(post?.comments);
+    const [comment, setComment] = useState('');
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const dispatch = useDispatch();
+    const commentRef = useRef();
+
+    const handleClick = async () => {
+        const finalComment = `${user.result.name}: ${comment}`;
+        const newComments = await dispatch(commentPost(finalComment, post._id));
+        setComments(newComments);
+        setComment('');
+
+        commentRef.current.scrollIntoView({ behavior: 'smooth'});
+    };
 
     return (
-        <h1>Commenct Section</h1>
+        <div>
+            <div className={classes.commentsOuterContainer}>
+                <div className={classes.commentsInnerContainer}>
+                    <Typography gutterBottom variant="h6">Comments</Typography>
+                    {comments.map((c, i) => (
+                        <Typography key={i} gutterBottom variant="subtitle1">
+                           <strong>{c.split(': ')[0]}:</strong>
+                           {c.split(':')[1]}
+                        </Typography>
+                    ))}
+                    <div ref={commentRef}/>
+                </div>
+                {user?.result?.name && ( 
+                    <div style={{ width: '70%' }}>
+                        <Typography gutterBottom variant="h6">Write a Comment</Typography>
+                        <TextField 
+                            fullWidth
+                            minRows={4}
+                            variant='outlined'
+                            label="Comment"
+                            multiline
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                        />
+                        <Button style={{ marginTop: '10px' }} color="primary" fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
+                            Comment
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 
