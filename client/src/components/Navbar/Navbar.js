@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 
 import useStyles from './styles';
 import gainzLogo from '../../images/gainzLogo.png';
@@ -40,6 +41,10 @@ const Navbar = () => {
                 <img component={Link} src={gainzText} alt="icon" height="60px"/>
                 <img className={classes.image} src={gainzLogo} alt="icon" height="50px" />
             </Link>
+            <Typography component={Link} to="/meals" className = {classes.meals} variant="h6">
+                <FastfoodIcon/>
+                Meals
+            </Typography>
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
                     <div className={classes.profile}>

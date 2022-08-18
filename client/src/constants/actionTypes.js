@@ -12,3 +12,9 @@ export const END_LOADING = 'END_LOADING';
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
+
+export const CREATE_MEAL = 'CREATE_MEAL';
+export const EDIT_MEAL = 'EDIT_MEAL';
+export const DELETE_MEAL = 'DELETE_MEAL';
+export const FETCH_ALL_MEALS = 'FETCH_ALL_MEALS';
+export const FETCH_TOTAL_CALORIES_TODAY = 'FETCH_TOTAL_CALORIES_TODAY';

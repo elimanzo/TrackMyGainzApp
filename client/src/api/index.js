@@ -20,3 +20,9 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
+
+export const fetchMeals = (id) => API.get(`/meals/${id}`);
+export const fetchTotalCalories = (id) => API.get(`/meals/totalCalories/${id}`);
+export const createMeal = (newMeal) => API.post('/meals', newMeal);
+export const editMeal = (id, edittedMeal) => API.patch(`/meals/${id}`, edittedMeal);
+export const deleteMeal = (id) => API.delete(`/meals/${id}`);

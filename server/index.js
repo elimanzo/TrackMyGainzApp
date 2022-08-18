@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
+import mealRoutes from './routes/meals.js';
 
 const app = express();
 dotenv.config();
@@ -16,9 +17,8 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
+app.use('/meals', mealRoutes);
 
-// Need to create environmental variables and store this connection URL
-// const CONNECTION_URL = 'mongodb+srv://edarr:vdU4D3Uix0t1nPgD@cluster0.zd7b93j.mongodb.net/?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
